@@ -1,4 +1,4 @@
-add /**
+/**
  * CollectionsSection Component — Vibrant Redesign
  * 
  * Displays products grouped by collection.
