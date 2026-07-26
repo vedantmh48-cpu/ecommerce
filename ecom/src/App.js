@@ -37,6 +37,8 @@ import CustomerServiceSection from "./components/CustomerServiceSection";
 import ContactForm from "./components/ContactForm";
 import ProductDetailModal from "./components/ProductDetailModal";
 import LoadingScreen from "./components/LoadingScreen";
+import ProductsNavBar from "./components/ProductsNavBar";
+import ProductSlideshowSection from "./components/ProductSlideshowSection";
 import products from "./data/products";
 
 // View states
@@ -182,6 +184,18 @@ const AppContent = () => {
 
           {/* Hero Section */}
           <HeroSection onScrollToProducts={scrollToProducts} />
+
+          {/* Product Spotlight Slideshow */}
+          <ProductSlideshowSection
+            onOpenDetail={handleOpenProductDetail}
+            onScrollToProducts={scrollToProducts}
+          />
+
+          {/* Products NavBar — Sticky sub-nav below hero */}
+          <ProductsNavBar
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+          />
 
           {/* Products Section */}
           <main ref={productsRef} id="products" className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12">

@@ -1,5 +1,5 @@
 /**
- * CollectionsSection Component — Vibrant Redesign
+ * CollectionsSection Component — Enhanced with staggered slide-in animations
  * 
  * Displays products grouped by collection.
  * Shows collection cards that filter to show products from each collection.
@@ -21,6 +21,41 @@ const collectionData = products.reduce((acc, p) => {
 
 const collections = Object.values(collectionData).sort((a, b) => b.products.length - a.products.length);
 
+const sectionVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+  },
+};
+
+const childVariants = {
+  hidden: { opacity: 0, x: -60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", stiffness: 150, damping: 20 },
+  },
+};
+
+const tabContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
+  },
+};
+
+const tabVariants = {
+  hidden: { opacity: 0, x: -20, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 200, damping: 18 },
+  },
+};
+
 const CollectionsSection = ({ id, onOpenDetail }) => {
   const [activeCollection, setActiveCollection] = useState("All");
 
@@ -32,34 +67,23 @@ const CollectionsSection = ({ id, onOpenDetail }) => {
   return (
     <section id={id || "collections"} className="section-padding section-alt">
       <div className="container-premium">
-        <div className="text-center sm:text-left mb-10">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 bg-lavender/10 rounded-full text-lavender text-xs font-medium mb-4"
-          >
+        <motion.div
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="text-center sm:text-left mb-10"
+        >
+          <motion.div variants={childVariants} className="inline-flex items-center gap-2 px-4 py-1.5 bg-lavender/10 rounded-full text-lavender text-xs font-medium mb-4">
             <FiGrid size={14} />
             Curated Collections
           </motion.div>
           <div className="flex items-end justify-between gap-4">
             <div>
-              <motion.h2
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark font-display"
-              >
+              <motion.h2 variants={childVariants} className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark font-display">
                 Collections
               </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-gray-400 text-sm mt-1.5"
-              >
+              <motion.p variants={childVariants} className="text-gray-400 text-sm mt-1.5">
                 Browse our curated collections — {collections.length} unique themes to explore
               </motion.p>
             </div>
@@ -67,18 +91,20 @@ const CollectionsSection = ({ id, onOpenDetail }) => {
               <div className="divider-premium sm:mx-0" />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Collection tabs */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.div
+          variants={tabContainerVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
           className="flex flex-wrap gap-2 mb-8"
         >
           <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+            variants={tabVariants}
+            whileHover={{ scale: 1.05, y: -1 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setActiveCollection("All")}
             className={`px-5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
               activeCollection === "All"
@@ -91,8 +117,9 @@ const CollectionsSection = ({ id, onOpenDetail }) => {
           {collections.map((col) => (
             <motion.button
               key={col.name}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              variants={tabVariants}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setActiveCollection(col.name)}
               className={`px-5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                 activeCollection === col.name
@@ -140,3 +167,4 @@ const CollectionsSection = ({ id, onOpenDetail }) => {
 };
 
 export default CollectionsSection;
+

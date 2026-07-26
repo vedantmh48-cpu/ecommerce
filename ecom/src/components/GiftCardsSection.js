@@ -1,5 +1,7 @@
+"use client";
+
 /**
- * GiftCardsSection Component — Vibrant Redesign
+ * GiftCardsSection Component — Enhanced with staggered card animations
  * 
  * Displays discount tiers/gift card offers in a visually engaging grid.
  * Tiers: Silver ($50+ = 10% off), Gold ($100+ = 15% off), Platinum ($200+ = 20% off)
@@ -17,40 +19,46 @@ const TIERS = [
   { name: "Platinum", min: 200, discount: 20, icon: FiZap, desc: "20% off your order", color: "from-lavender-300 to-lavender-500", textColor: "text-lavender", bgColor: "bg-lavender/10" },
 ];
 
+const sectionVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.05 },
+  },
+};
+
+const childVariants = {
+  hidden: { opacity: 0, x: -60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", stiffness: 150, damping: 20 },
+  },
+};
+
 const GiftCardsSection = ({ onScrollToProducts }) => {
   const { subtotal, qualifiesForGift, discountPercent } = useCart();
 
   return (
     <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      <div className="text-center mb-10">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 bg-coral/10 rounded-full text-coral text-xs font-medium mb-3"
-        >
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        className="text-center mb-10"
+      >
+        <motion.div variants={childVariants} className="inline-flex items-center gap-2 px-3 py-1.5 bg-coral/10 rounded-full text-coral text-xs font-medium mb-3">
           <FiZap size={14} />
           Special Offers
         </motion.div>
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-2xl sm:text-3xl font-bold text-dark font-display"
-        >
+        <motion.h2 variants={childVariants} className="text-2xl sm:text-3xl font-bold text-dark font-display">
           Gift Card Discounts
         </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="text-gray-400 text-sm mt-2 max-w-md mx-auto"
-        >
+        <motion.p variants={childVariants} className="text-gray-400 text-sm mt-2 max-w-md mx-auto">
           Spend more and save more with our tiered discount system. Discount auto-applies at checkout.
         </motion.p>
-      </div>
+      </motion.div>
 
       <div className="grid sm:grid-cols-3 gap-5">
         {TIERS.map((tier, idx) => {

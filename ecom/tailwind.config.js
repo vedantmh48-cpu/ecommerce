@@ -4,22 +4,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Modern Vibrant Palette
-        dark: "#0F172A", // Slate-900 for high-contrast text
-        teal: "#0D9488", // Teal-600 vibrant primary
-        "teal-light": "#14B8A6", // Teal-500
-        "teal-dark": "#0F766E", // Teal-700
-        coral: "#F43F5E", // Rose-500 vibrant accent
-        "coral-light": "#FB7185", // Rose-400
-        "coral-dark": "#E11D48", // Rose-600
-        lavender: "#8B5CF6", // Violet-500
-        "lavender-light": "#A78BFA", // Violet-400
-        amber: "#F59E0B", // Amber-500
-        "amber-light": "#FBBF24", // Amber-400
-        cream: "#FFF7ED", // Orange-50 warm background
-        offwhite: "#F8FAFC", // Slate-50 clean light
-        "warm-white": "#FFFBEB", // Amber-50
-        "soft-bg": "#F0FDF4", // Emerald-50
+        dark: "#0a0a0f",
+        teal: "#7c3aed",
+        "teal-light": "#a78bfa",
+        "teal-dark": "#0a0a0f",
+        coral: "#06b6d4",
+        "coral-light": "#67e8f9",
+        "coral-dark": "#0891b2",
+        lavender: "#a78bfa",
+        "lavender-light": "#c4b5fd",
+        amber: "#06b6d4",
+        "amber-light": "#67e8f9",
+        cream: "#f1f5f9",
+        offwhite: "#f1f5f9",
+        "warm-white": "#f1f5f9",
+        "soft-bg": "#111118",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
@@ -88,13 +87,13 @@ module.exports = {
         "4xl": "2rem",
       },
       boxShadow: {
-        "vibrant": "0 4px 20px rgba(13, 148, 136, 0.2)",
-        "vibrant-lg": "0 8px 32px rgba(13, 148, 136, 0.25)",
-        "coral": "0 4px 20px rgba(244, 63, 94, 0.2)",
-        "coral-lg": "0 8px 32px rgba(244, 63, 94, 0.25)",
-        "lavender": "0 4px 20px rgba(139, 92, 246, 0.2)",
-        "soft": "0 2px 16px rgba(15, 23, 42, 0.06)",
-        "soft-lg": "0 8px 40px rgba(15, 23, 42, 0.08)",
+        "vibrant": "0 4px 24px rgba(124, 58, 237, 0.35)",
+        "vibrant-lg": "0 8px 40px rgba(124, 58, 237, 0.5)",
+        "coral": "0 4px 24px rgba(6, 182, 212, 0.3)",
+        "coral-lg": "0 8px 40px rgba(6, 182, 212, 0.45)",
+        "lavender": "0 4px 20px rgba(167, 139, 250, 0.3)",
+        "soft": "0 2px 16px rgba(10, 10, 15, 0.4)",
+        "soft-lg": "0 8px 40px rgba(10, 10, 15, 0.6)",
       },
     },
   },

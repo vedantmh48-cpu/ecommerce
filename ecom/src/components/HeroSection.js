@@ -10,14 +10,30 @@
  * - Trust indicators with vibrant icons
  */
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   FiArrowRight, FiShoppingBag, FiShield, FiTruck, 
-  FiRefreshCw, FiChevronRight, FiStar, FiZap, FiHeart 
+  FiRefreshCw, FiChevronRight, FiZap 
 } from "react-icons/fi";
 
+const SLIDE_PRODUCTS = [
+  { id: 1,  name: "Minimalist Watch",       price: "$119",  image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&h=600&fit=crop" },
+  { id: 2,  name: "Leather Crossbody Bag",  price: "$245",  image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=600&fit=crop" },
+  { id: 3,  name: "Noise Cancelling Headphones", price: "$199", image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop" },
+  { id: 4,  name: "Cashmere Crew Sweater",  price: "$149",  image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=600&fit=crop" },
+  { id: 5,  name: "Artisan Coffee Mug",     price: "$24.99", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&h=600&fit=crop" },
+];
+
 const HeroSection = ({ onScrollToProducts }) => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % SLIDE_PRODUCTS.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
   return (
     <section className="relative overflow-hidden min-h-[80vh] flex items-center bg-gradient-to-br from-teal via-teal-dark to-dark">
       {/* Animated background orbs */}
@@ -192,82 +208,59 @@ const HeroSection = ({ onScrollToProducts }) => {
             </motion.div>
           </motion.div>
 
-          {/* Right decorative */}
+          {/* Right — Product Slideshow */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="lg:col-span-5 hidden lg:flex items-center justify-center relative"
           >
-            <div className="relative w-80 h-80 xl:w-96 xl:h-96">
-              {/* Outer ring */}
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border border-white/10"
-              />
-              
-              {/* Middle ring */}
-              <motion.div 
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-4 rounded-full bg-gradient-to-br from-coral/10 via-teal/10 to-lavender/10 backdrop-blur-sm border border-white/10"
-              />
-              
-              {/* Inner dashed ring */}
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-8 rounded-full border border-dashed border-white/10"
-              />
-              
-              {/* Center content */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="text-center"
-                >
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-coral via-coral-light to-amber flex items-center justify-center shadow-coral-lg">
-                    <FiHeart size={28} className="text-white" />
-                  </div>
-                  <p className="text-white font-bold text-xl xl:text-2xl font-display">Quality First</p>
-                  <p className="text-coral/80 text-sm font-medium">Crafted with intention</p>
-                </motion.div>
-              </div>
+            <div className="relative w-80 h-80 xl:w-96 xl:h-96 rounded-3xl overflow-hidden shadow-2xl">
+              {/* Glow ring */}
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-teal via-coral to-lavender opacity-30 blur-lg pointer-events-none" />
 
-              {/* Floating icons */}
-              <motion.div
-                animate={{ y: [0, -15, 0], rotate: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 w-16 h-16 rounded-2xl bg-gradient-to-br from-teal/40 to-teal/10 backdrop-blur-sm border border-white/15 flex items-center justify-center shadow-lg"
-              >
-                <FiShoppingBag size={20} className="text-white/80" />
-              </motion.div>
-              
-              <motion.div
-                animate={{ y: [0, 15, 0], rotate: [0, -10, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                className="absolute -bottom-4 right-6 w-14 h-14 rounded-2xl bg-gradient-to-br from-amber/40 to-amber/10 backdrop-blur-sm border border-white/15 flex items-center justify-center shadow-lg"
-              >
-                <FiStar size={18} className="text-white/80" />
-              </motion.div>
-              
-              <motion.div
-                animate={{ y: [0, -12, 0], rotate: [0, 8, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                className="absolute bottom-8 -left-5 w-14 h-14 rounded-2xl bg-gradient-to-br from-coral/30 to-coral/10 backdrop-blur-sm border border-white/15 flex items-center justify-center shadow-lg"
-              >
-                <FiZap size={18} className="text-white/80" />
-              </motion.div>
-              
-              <motion.div
-                animate={{ y: [0, 18, 0], rotate: [0, -12, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                className="absolute top-10 -right-8 w-12 h-12 rounded-xl bg-gradient-to-br from-lavender/30 to-lavender/10 backdrop-blur-sm border border-white/15 flex items-center justify-center shadow-lg"
-              >
-                <FiStar size={14} className="text-white/80" />
-              </motion.div>
+              {/* Slides */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current}
+                  initial={{ opacity: 0, scale: 1.06 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="absolute inset-0"
+                >
+                  <img
+                    src={SLIDE_PRODUCTS[current].image}
+                    alt={SLIDE_PRODUCTS[current].name}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Bottom overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent" />
+                  {/* Product label */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                    className="absolute bottom-5 left-5 right-5"
+                  >
+                    <p className="text-white font-bold text-lg font-display leading-tight">{SLIDE_PRODUCTS[current].name}</p>
+                    <p className="text-coral font-semibold text-sm mt-0.5">{SLIDE_PRODUCTS[current].price}</p>
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Dot indicators */}
+              <div className="absolute top-4 right-4 flex flex-col gap-1.5">
+                {SLIDE_PRODUCTS.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrent(i)}
+                    className={`w-1.5 rounded-full transition-all duration-300 ${
+                      i === current ? "h-6 bg-white" : "h-1.5 bg-white/40"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
