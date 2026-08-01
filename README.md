@@ -1,23 +1,6 @@
-<!-- HEADER BANNER ANIMATION -->
-<p align="center">
-  <svg width="100%" height="160" viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <!-- Animated Gradient -->
-      <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#6366f1">
-          <animate attributeName="stop-color" values="#6366f1; #a855f7; #ec4899; #6366f1" dur="6s" repeatCount="indefinite" />
-        </stop>
-        <stop offset="50%" stop-color="#a855f7">
-          <animate attributeName="stop-color" values="#a855f7; #ec4899; #6366f1; #a855f7" dur="6s" repeatCount="indefinite" />
-        </stop>
-        <stop offset="100%" stop-color="#ec4899">
-          <animate attributeName="stop-color" values="#ec4899; #6366f1; #a855f7; #ec4899" dur="6s" repeatCount="indefinite" />
-        </stop>
-      </linearGradient>
-    </defs>
+\
     <!-- Background Card -->
-    <rect width="100%" height="100%" rx="16" fill="#0d1117" stroke="#30363d" stroke-width="1.5" />
-    
+    <rect width="100%" height="100%" rx="16" fill="#0d1117" stroke="#30363d" stroke-width="1.5" />  
     <!-- Title Text -->
     <text x="50%" y="70" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="900" fill="url(#headerGrad)" letter-spacing="2">
       ⚡ NEXT-GEN E-COMMERCE
