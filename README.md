@@ -1,15 +1,9 @@
-\
-    <!-- Background Card -->
-    <rect width="100%" height="100%" rx="16" fill="#0d1117" stroke="#30363d" stroke-width="1.5" />  
-    <!-- Title Text -->
-    <text x="50%" y="70" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="900" fill="url(#headerGrad)" letter-spacing="2">
-      ⚡ NEXT-GEN E-COMMERCE
-    </text>
-    <text x="50%" y="110" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="500" fill="#8b949e" letter-spacing="1">
-      A High-Performance Digital Storefront &amp; Modern Shopping Experience
-    </text>
-  </svg>
-</p>
+<div align="center">
+
+  <!-- Header Banner -->
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&section=header&text=E-COMMERCE%20PLATFORM&fontSize=50&fontColor=FFFFFF&fontAlignY=40&animation=fadeIn&desc=FULL-STACK%20%7C%20GLASSMORPHIC%20UI%20%7C%20REAL-TIME%20STOREFRONT&descAlignY=62&descSize=15&fontAlign=50&color=0:0F172A,50:2563EB,100:0F172A" width="100%" alt="E-Commerce Platform Banner"/>
+</div>
+<br>
 
 <!-- DYNAMIC TYPING SVG SUBTITLE -->
 <p align="center">
@@ -25,7 +19,6 @@
   <img src="https://img.shields.io/github/license/yourusername/your-repo?style=for-the-badge&color=ec4899" alt="License"/>
   <img src="https://img.shields.io/github/last-commit/yourusername/your-repo?style=for-the-badge&logo=git&color=22c55e" alt="Last Commit"/>
 </p>
-
 ---
 
 ## 🌐 Live Preview & Demo Access
